@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body , main , .carousel {
+    transform-style: preserve-3d;
+    font-family: cursive;
+}

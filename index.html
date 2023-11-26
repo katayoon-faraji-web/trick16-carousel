@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/master.css">
+    <link rel="stylesheet" href="css/output.css">
+    <link rel="stylesheet" href="icon/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="icon/font/bootstrap-icons.min.css">
+    <style>
+        .first{
+            background-color: #4ec9e1;
+            height: 400px;
+            width: 225px;
+            top: 0;
+            left: 480px;
+            transition-property: background-color;
+            transition-duration: 1s;
+        }
+        .second{
+            background-color: #6796e5;
+            height: 300px;
+            width: 200px;
+            top: 50px;
+            transition-property: background-color;
+            transition-duration: 1s;
+        }
+        .third{
+            background-color: #228291;
+            height: 200px;
+            width: 180px;
+            top: 100px;
+            transition-property: background-color;
+            transition-duration: 1s;
+        }
+    </style>
+</head>
+<body class="bg-bg">
+    <section class="w-[1200px] h-[600px] mx-auto my-[100px] overflow-x-hidden relative ">
+        <ul class="carousel w-fit h-[500px] flex justify-between items-center">
+            <li class="absolute left-[35px] border w-[225px] h-[400px] bg-third flex justify-center items-center text-white text-[50px] mx-2 ">1</li>
+            <li class="absolute left-[230px] border w-[225px] h-[400px] bg-second flex justify-center items-center text-white text-[50px] mx-2">2</li>
+            <li class="absolute left-[460px] border w-[225px] h-[400px] bg-first flex justify-center items-center text-white text-[50px] mx-2">3</li>
+            <li class="absolute left-[760px] border w-[225px] h-[400px] bg-second flex justify-center items-center text-white text-[50px] mx-2">4</li>
+            <li class="absolute left-[980px] border w-[225px] h-[400px] bg-third flex justify-center items-center text-white text-[50px] mx-2">5</li>
+            <li class="absolute top-0 -left-[1200px] border w-[225px] h-[400px] bg-third flex justify-center items-center text-white text-[50px] mx-2">6</li>
+            <li class="absolute top-0 -left-[1200px] border w-[225px] h-[400px] bg-third flex justify-center items-center text-white text-[50px] mx-2">7</li>
+            <li class="absolute top-0 -left-[1200px] border w-[225px] h-[400px] bg-third flex justify-center items-center text-white text-[50px] mx-2">8</li>
+            <li class="absolute top-0 -left-[1200px] border w-[225px] h-[400px] bg-third flex justify-center items-center text-white text-[50px] mx-2">9</li>
+            <li class="absolute top-0 -left-[1200px] border w-[225px] h-[400px] bg-third flex justify-center items-center text-white text-[50px] mx-2">10</li>
+            
+        </ul>
+    </section>
+    <button id="next" class="absolute top-[30%] left-[92%] "><i class="bi bi-arrow-right-circle-fill text-[40px] text-second"></i></button>
+    <button id="pre" class="absolute top-[30%] left-[5%] "><i class="bi bi-arrow-left-circle-fill text-[40px] text-second"></i></button>
+
+    <script>
+        let button_next = document.getElementById('next')
+        let button_pre = document.getElementById('pre')
+        let _li = document.querySelectorAll('.carousel>li')        
+        let middle = 2
+        let ll = middle-2
+        let l = middle-1
+        let r = middle+1
+        let rr = middle +2
+        let len = _li.length
+        _li[middle].classList.add('first')
+        _li[l].classList.add('second')
+        _li[ll].classList.add('third')
+        _li[r].classList.add('second')
+        _li[rr].classList.add('third')
+
+        function trans(){
+            _li.forEach((k)=>{
+                k.classList.remove('second')
+                k.classList.remove('third')
+            })
+            if(middle>(len-1)){
+                middle -= len
+            }
+            if(middle<0){
+                middle += len
+            }
+            ll = middle-2
+            l = middle-1
+            r = middle+1
+            rr = middle+2
+                  
+            if(r>9){
+                r -= len
+            }
+            if(rr>9){
+                rr -= len
+            }
+            if(l<0){
+                l += len
+            }
+            if(ll<0){
+                ll += len
+            }
+
+            _li[middle].style.left = '480px'
+            _li[l].style.left = '230px'
+            _li[ll].style.left = '35px'
+            _li[r].style.left = '760px'
+            _li[rr].style.left = '980px'
+
+
+            _li[middle].classList.add('first')
+            _li[l].classList.add('second')
+            _li[ll].classList.add('third')
+            _li[r].classList.add('second')
+            _li[rr].classList.add('third')
+
+            for(let y=0 ;y<_li.length ; y++){
+                if( y!=middle && y!=l && y!=ll && y!=r && y!=rr){
+                    _li[y].style.left = '-1200px'
+                }
+            }
+        }
+        button_next.addEventListener('click',(e)=>{
+            middle++
+            trans()
+        })
+        button_pre.addEventListener('click',(e)=>{
+            middle--
+            trans()
+        })
+            
+    </script>
+    
+</body>
+</html>
